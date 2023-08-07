@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>sign-up</title>
+    <link rel="stylesheet" href="{% static 'signup/signup.css' %}">
+</head>
+<body>
+    <nav>
+        <a href=""><img src="{% static 'signup/images/logo.png' %}" alt="logo"></a>
+    </nav>
+    <div class="form-wrapper">
+        <h2>Sign Up</h2>
+        <form action="#" method="post">
+          {% csrf_token %}
+            <div class="form-control">
+                <input type="text" name="username" required>
+                <label>Name</label>
+            </div>
+            <div class="form-control">
+                <input type="email" name="email" required>
+                <label>Email</label>
+            </div>
+            <div class="form-control">
+                <input type="password" name="password" required>
+                <label>Password</label>
+                {% for message in messages %}
+                <div id="alert-message" class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    <strong>Message:</strong> {{ message }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+                </div>
+                {% endfor %}
+            </div>
+            <button type="submit">Sign up</button>
+        </form>
+        <p>Already have an account?<a href="{% url 'login' %}">Login</a> </p>
+      
+    </div>
+</body>
+</html>
